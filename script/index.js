@@ -36,10 +36,14 @@ function toggleStyle(id){
 
     if(id== 'interview-tab'){
         allCardSection.classList.add('hidden');
-        filterSection.classList.remove('hidden')
+        filterSection.classList.remove('hidden');
     }
     else if(id == 'tab-all'){
         allCardSection.classList.remove('hidden');
+        filterSection.classList.add('hidden');
+    }else if(id == 'rejected-tab'){
+  allCardSection.classList.add('hidden');
+  filterSection.classList.remove('hidden');
     }
 }
 
@@ -47,8 +51,6 @@ function toggleStyle(id){
 
 mainContainer.addEventListener('click', function(event){
 
-    console.log(event.target.classList.contains('interview-btn'));
-    
  if(event.target.classList.contains('interview-btn')){
     const parentN = event.target.parentNode.parentNode;
   const cardTitle = parentN.querySelector('.card-title').innerText;
@@ -90,7 +92,43 @@ const titleExist =  InterviewList.find(item=> item.cardTitle == cardInfo.cardTit
   CalculateCount()
     renderInterview()
  }
+ else if(event.target.classList.contains('rejected-btn')){
+    const parentN = event.target.parentNode.parentNode;
+  const cardTitle = parentN.querySelector('.card-title').innerText;
+  const light = parentN.querySelector('.light').innerText;
+  const small = parentN.querySelector('.small').innerText;
+  const statusS = parentN.querySelector('.status').innerText;
+  const down = parentN.querySelector('.down').innerText;
+  const notes = parentN.querySelector('.ma').innerText;
+
+
+
+
+
   
+  const cardInfo ={
+    cardTitle,
+    light,
+    small, 
+    statusS : 'Reject',
+    down,
+    notes
+}
+  parentN.querySelector('.status').innerText = 'Reject';
+  parentN.querySelector('.status').style.color = 'red';
+  parentN.querySelector('.status').style.backgroundColor = '#FFCCCB';
+  parentN.querySelector('.status').style.width = '60px';
+  parentN.querySelector('.status').style.padding = '5px';
+const titleExist =  RejectedList.find(item=> item.cardTitle == cardInfo.cardTitle) ;
+
+
+
+  if(!titleExist){
+    RejectedList.push(cardInfo);
+  }
+  CalculateCount()
+    renderRejected()
+ }
 })
 
 
@@ -130,7 +168,38 @@ function renderInterview(){
 
 
 
+function renderRejected(){
+   filterSection.innerHTML = ''
 
+
+   for(let rejected of RejectedList){
+
+    // console.log(rejected);
+    
+    let div = document.createElement('div');
+    div.className = 'card shadow-2xl p-5 mt-10 border-2  border-[white]'
+    div.innerHTML =                       `<div class="card-title flex justify-between">
+                                        <h3 class="font-bold text-[16px]">${rejected.cardTitle}</h3>
+                                        <button id="delete-box-mobile"><i class="fa-solid fa-trash"></i></button>
+    
+                                        </div>
+                                        <p class="light opacity-50">${rejected.light}</p>
+<br>
+                                        <p class="small opacity-30"> ${rejected.small}</p>
+                                        <span><p id="Applied-form-mobile" class="bg-[#FFCCCB] text-[red] h-10 w-[60px] p-1 font-bold mt-2 status">
+                                        ${rejected.statusS}
+                                        </p></span>
+                                        <br>
+                                        <p class="down">${rejected.down}</p>
+                                        <br>
+                                        <div class="button-in-body-foot flex gap-3 ma">
+                                        <button id="body-foot-interview-mobile" class="border border-green-600 p-1 font-bold cursor-pointer">Interview</button> 
+                                        <button id="body-foot-rejected-mobile" class="border border-red-600 p-1 font-bold text-red-600 cursor-pointer">Rejected</button>
+                                        </div>`
+
+                                        filterSection.appendChild(div);
+   }
+}
 
 
 
