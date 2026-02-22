@@ -1,0 +1,273 @@
+<!DOCTYPE html >
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Tracker</title>
+    <link rel="stylesheet" href="css/tailwind.init.css">
+
+
+    <!-- daisy + tailwind -->
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<!-- font awsome  -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+</head>
+<body class="min-h-screen w-[80%] mx-auto bg-base-200">
+    
+    <section id="header" class="header mt-[100px] ml-2.5 p-20">
+<h1 class="text-[#004c9e] text-[30px] ">Job Application Tracker</h1>
+<br>
+    <div class="cards grid md:grid-cols-1 lg:grid-cols-3 gap-3 ">
+    <div id="header-total" class="box bg-[#070b13]   p-2 rounded-[8px]"><p>
+        <p>Total</p>
+        <p id="header-total-count" class="text-[#002C5C] font-bold   ">0</p>
+    </p></div>
+    <div id="header-interview" class="box bg-[#070b13] p-2 rounded-[8px]">
+                <p>Interview</p>
+        <p id="header-interview-count" class="text-[green]   font-bold ">0</p>
+    </div>
+    <div id="header-rejected" class="box bg-[#070b13]  p-2 rounded-[8px]">
+                <p>Rejected</p>
+        <p id="header-reject-count" class="text-[red] font-bold">0</p> <br>
+    </div>
+
+    </div>
+    </section>
+
+
+    <main id="body" class="main-body  p-20">
+<div class="flex justify-between">
+    <h2>Available Jobs</h2>
+    <div id="body-total-job"><p>8</p></div>
+</div>
+    <br>
+    <!-- name of each tab group should be unique -->
+<div class="tabs tabs-box bg-base-200 shadow-none  ">
+  <input onclick="toggleStyle('tab-all')" type="radio" name="my_tabs_1" id="tab-all" class="tab  [--tab-bg:#3B82F6] " aria-label="All" checked="checked"/>
+  <input onclick="toggleStyle('interview-tab')" type="radio" name="my_tabs_1" id="interview-tab" class="tab  [--tab-bg:#3B82F6] " aria-label="Interview"/>
+  <input onclick="toggleStyle('rejected-tab')" type="radio" name="my_tabs_1" id="rejected-tab" class="tab  [--tab-bg:#3B82F6] " aria-label="Rejected" />
+
+</div>
+
+<div id="allCards" class="body-foot p-3 ">
+
+    <div class="card shadow-2xl p-5 mt-10 border-2  border-[white]" id="mobile">
+<div class="card-title flex justify-between">
+    <h3 class="font-bold text-[16px]">Mobile First Corp</h3>
+<button id="delete-box-mobile"><i class="fa-solid fa-trash"></i></button>
+    
+</div>
+    <p class="light opacity-50">React native Developer</p>
+<br>
+    <p class="small opacity-30"> Remote • Full-time • $130,000 - $175,000</p>
+    <span><p id="Applied-form-mobile" class=" bg-white w-30 h-10 p-2 font-bold mt-2 status">
+        NOT APPLIED
+    </p></span>
+    <br>
+    <p class="down">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+    <br>
+<div class="button-in-body-foot flex gap-3 ma">
+        <button id="body-foot-interview-mobile"  class="interview-btn border border-green-600 p-1 font-bold cursor-pointer">Interview</button> 
+    <button id="body-foot-rejected-mobile" class="rejected-btn border border-red-600 p-1 font-bold text-red-600 cursor-pointer">Rejected</button>
+</div>
+    </div>
+
+
+
+
+    <div class="card shadow-2xl p-5 mt-10 border-2  border-[white]" id="WebFlow">
+<div class="card-title flex justify-between">
+    <h3 class="font-bold text-[16px]">WebFlow Agency</h3>
+<button id="delete-box-webflow"><i class="fa-solid fa-trash"></i></button>
+    
+</div>
+    <p class="light opacity-50">Web Designer & Developer</p>
+<br>
+    <p class="small opacity-30"> Los Angeles, CA • Part-time • $80,000 - $120,000</p>
+    <span><p id="Applied-form-webflow" class=" bg-white w-30 h-10 p-2 font-bold mt-2 status">
+        NOT APPLIED
+    </p></span>
+    <p class="down">Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.</p>
+    <br>
+<div class="button-in-body-foot flex gap-3 ma">
+        <button id="body-foot-interview-webflow" class="interview-btn border border-green-600 p-1 font-bold cursor-pointer">Interview</button> 
+    <button id="body-foot-rejected-webflow" class=" rejected-btn border border-red-600 p-1 font-bold text-red-600 cursor-pointer">Rejected</button>
+</div>
+    </div>
+
+
+
+
+    <div class="card shadow-2xl p-5 mt-10 border-2  border-[white]" id="dataviz">
+<div class="card-title flex justify-between">
+    <h3 class="font-bold text-[16px]">DataViz Solutions</h3>
+<button id="delete-box-dataviz"><i class="fa-solid fa-trash"></i></button>
+    
+</div>
+    <p class="light opacity-50">Data Visualization Specialist</p>
+<br>
+    <p class="small opacity-30">Boston, MA • Full-time • $125,000 - $165,000</p>
+    <span><p id="Applied-form-dataviz" class=" bg-white w-30 h-10 p-2 font-bold mt-2 status">
+        NOT APPLIED
+    </p></span>
+    <p class="down">Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.
+</p>
+    <br>
+<div class="button-in-body-foot flex gap-3 ma">
+        <button id="body-foot-interview-dataviz" class="interview-btn border border-green-600 p-1 font-bold cursor-pointer">Interview</button> 
+    <button id="body-foot-rejected-dataviz" class="rejected-btn border border-red-600 p-1 font-bold text-red-600 cursor-pointer">Rejected</button>
+</div>
+    </div>
+
+
+
+
+    <div class="card shadow-2xl p-5 mt-10 border-2  border-[white]" id="CloudFirst">
+<div class="card-title flex justify-between">
+    <h3 class="font-bold text-[16px]">CloudFirst Inc</h3>
+<button id="delete-box-CloudFirst"><i class="fa-solid fa-trash"></i></button>
+    
+</div>
+    <p class="light opacity-50">Backend Developer</p>
+<br>
+    <p class="small opacity-30">Seattle, WA • Full-time • $140,000 - $190,000</p>
+    <span><p id="Applied-form-CloudFirst" class=" bg-white w-30 h-10 p-2 font-bold mt-2 status">
+        NOT APPLIED
+    </p></span>
+    <p class="down">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+    <br>
+<div class="button-in-body-foot flex gap-3 ma">
+        <button id="body-foot-interview-CloudFirst" class="interview-btn border border-green-600 p-1 font-bold cursor-pointer">Interview</button> 
+    <button id="body-foot-rejected-CloudFirst" class="rejected-btn border border-red-600 p-1 font-bold text-red-600 cursor-pointer">Rejected</button>
+</div>
+    </div>
+
+
+
+
+    <div class="card shadow-2xl p-5 mt-10 border-2  border-[white]" id="Innovation">
+<div class="card-title flex justify-between">
+    <h3 class="font-bold text-[16px]">Innovation Labs</h3>
+<button id="delete-box-Innovation"><i class="fa-solid fa-trash"></i></button>
+    
+</div>
+    <p class="light opacity-50">UI/UX Engineerr</p>
+<br>
+    <p class="small opacity-30">Austin, TX • Full-time • $110,000 - $150,000</p>
+    <span><p id="Applied-form-Innovation" class=" bg-white w-30 h-10 p-2 font-bold mt-2 status">
+        NOT APPLIED
+    </p></span>
+    <p class="down">Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.</p>
+    <br>
+<div class="button-in-body-foot flex gap-3 ma">
+        <button id="body-foot-interview-Innovation" class="interview-btn border border-green-600 p-1 font-bold cursor-pointer">Interview</button> 
+    <button id="body-foot-rejected-Innovation" class="rejected-btn border border-red-600 p-1 font-bold text-red-600 cursor-pointer">Rejected</button>
+</div>
+    </div>
+
+
+
+
+    <div class="card shadow-2xl p-5 mt-10 border-2  border-[white]" id="MegaCorp">
+<div class="card-title flex justify-between">
+    <h3 class="font-bold text-[16px]">MegaCorp Solutions</h3>
+<button id="delete-box-MegaCorp"><i class="fa-solid fa-trash"></i></button>
+    
+</div>
+    <p class="light opacity-50">JavaScript Developer</p>
+<br>
+    <p class="small opacity-30"> New York, NY • Full-time • $130,000 - $170,00</p>
+    <span><p id="Applied-form-MegaCorp" class=" bg-white w-30 h-10 p-2 font-bold mt-2 status">
+        NOT APPLIED
+    </p></span>
+    <p class="down">Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.</p>
+    <br>
+<div class="button-in-body-foot flex gap-3 ma">
+        <button id="body-foot-interview-MegaCorp" class="interview-btn border border-green-600 p-1 font-bold cursor-pointer">Interview</button> 
+    <button id="body-foot-rejected-MegaCorp" class="rejected-btn border border-red-600 p-1 font-bold text-red-600 cursor-pointer">Rejected</button>
+</div>
+    </div>
+
+
+
+
+    <div class="card shadow-2xl p-5 mt-10 border-2  border-[white]" id="StartupXYZ">
+<div class="card-title flex justify-between">
+    <h3 class="font-bold text-[16px]">StartupXYZ</h3>
+<button id="delete-box-Startup"><i class="fa-solid fa-trash"></i></button>
+    
+</div>
+    <p class="light opacity-50">Full Stack Engineer</p>
+<br>
+    <p class="small opacity-30">Remote • Full-time • $120,000 - $160,000</p>
+    <span><p id="Applied-form-Startup" class=" bg-white w-30 h-10 p-2 font-bold mt-2 status">
+        NOT APPLIED
+    </p></span>
+    <p class="down">Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included.</p>
+    <br>
+<div class="button-in-body-foot flex gap-3 ma">
+        <button id="body-foot-interview-Startup" class="interview-btn border border-green-600 p-1 font-bold cursor-pointer">Interview</button> 
+    <button id="body-foot-rejected-Startup" class="rejected-btn border border-red-600 p-1 font-bold text-red-600 cursor-pointer">Rejected</button>
+</div>
+    </div>
+
+
+
+
+    <div class="card shadow-2xl p-5 mt-10 border-2  border-[white]" id="TechCorp">
+<div class="card-title flex justify-between">
+    <h3 class="font-bold text-[16px]">TechCorp Industries</h3>
+<button id="delete-box-TechCorp"><i class="fa-solid fa-trash"></i></button>
+    
+</div>
+    <p class="light opacity-50">Senior Frontend Developer</p>
+<br>
+    <p class="small opacity-30">San Francisco, CA • Full-time • $130,000 - $175,000</p>
+    <span><p id="Applied-form-TechCorp" class=" bg-white w-30 h-10 p-2 font-bold mt-2 status">
+        NOT APPLIED
+    </p></span>
+    <p class="down">We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.</p>
+    <br>
+<div class="button-in-body-foot flex gap-3 ma">
+        <button id="body-foot-interview-TechCorp" class="interview-btn border border-green-600 p-1 font-bold cursor-pointer">Interview</button> 
+    <button id="body-foot-rejected-TechCorp" class="rejected-btn border border-red-600 p-1 font-bold text-red-600 cursor-pointer">Rejected</button>
+</div>
+    </div>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+</div> 
+<section id="filted-section" class=" hidden"></section>
+
+</main>
+
+
+
+
+
+
+<script src="script/index.js"></script>
+</body>
+</html>
