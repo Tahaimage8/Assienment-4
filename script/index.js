@@ -44,6 +44,7 @@ function toggleStyle(id){
     }else if(id == 'rejected-tab'){
   allCardSection.classList.add('hidden');
   filterSection.classList.remove('hidden');
+   renderRejected(); 
      }
 }
 
@@ -89,10 +90,8 @@ const titleExist =  InterviewList.find(item=> item.cardTitle == cardInfo.cardTit
   if(!titleExist){
     InterviewList.push(cardInfo);
   }
-RejectedList = RejectedList.filter(item => item.cardTitle != cardInfo.cardTitle);
- 
 
-
+RejectedList = RejectedList.filter(item => item.cardTitle !== cardTitle);
   CalculateCount()
     renderInterview()
 
@@ -137,6 +136,22 @@ const titleExist =  RejectedList.find(item=> item.cardTitle == cardInfo.cardTitl
   CalculateCount()
     renderRejected()
  }
+else if (event.target.closest('.delete-btn')) {
+
+  const card = event.target.closest('.card');
+  const cardTitle = card.querySelector('h3').innerText;
+
+  // DOM থেকে remove
+  card.remove();
+
+  InterviewList = InterviewList.filter(item => item.cardTitle !== cardTitle);
+
+
+
+  CalculateCount();
+
+
+}
 })
 
 
@@ -152,7 +167,7 @@ function renderInterview(){
     div.className = 'card shadow-2xl p-5 mt-10 border-2  border-[white]'
     div.innerHTML =                       `<div class="card-title flex justify-between">
                                         <h3 class="font-bold text-[16px]">${interview.cardTitle}</h3>
-                                        <button id="delete-box-mobile"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="delete-btn"><i class="fa-solid fa-trash"></i></button>
     
                                         </div>
                                         <p class="light opacity-50">${interview.light}</p>
@@ -208,344 +223,3 @@ function renderRejected(){
                                         filterSection.appendChild(div);
    }
 }
-
-
-
-
-
-
-
-/////////// this is start by mine
-
-
-
-// const headerInterviewCount = document.getElementById('header-interview-count');
-
-// document.getElementById('body-foot-interview-mobile').addEventListener('click',function(){
-// const notAppliedMobile = document.getElementById('Applied-form-mobile');
-
-
-
-//     if(notAppliedMobile.innerText === 'Interview' || 
-//        notAppliedMobile.innerText === 'Reject'){
-//         return;
-//     }
-
-
-
-
-
-
-
-// notAppliedMobile.innerText = 'Interview';
-// notAppliedMobile.style.color = 'green';
-// notAppliedMobile.style.backgroundColor = 'lightGreen';
-// notAppliedMobile.style.width = '85px';
-// notAppliedMobile.style.padding = '5px';
-
-
-
-
-
-
-//  let currentValue = parseInt(headerInterviewCount.innerText);
-
-//     if(isNaN(currentValue)){
-//         currentValue = 0;
-//     }
-
-//     headerInterviewCount.innerText = currentValue + 1;
-    
-// })
-
-
-
-
-
-
-
-
-
-// const headerRejectCount = document.getElementById('header-reject-count');
-
-// document.getElementById('body-foot-rejected-mobile').addEventListener('click',function(){
-
-
-
-// const notAppliedMobile = document.getElementById('Applied-form-mobile');
-
-
-//     if(notAppliedMobile.innerText === 'Interview' || 
-//        notAppliedMobile.innerText === 'Reject'){
-//         return;
-//     }
-
-
-// notAppliedMobile.innerText = 'Reject';
-// notAppliedMobile.style.color = 'red';
-// notAppliedMobile.style.backgroundColor = '#FFCCCB';
-// notAppliedMobile.style.width = '60px';
-// notAppliedMobile.style.padding = '5px';
-
-
-
-
-
-
-//  let currentValue = parseInt(headerRejectCount.innerText);
-
-//     if(isNaN(currentValue)){
-//         currentValue = 0;
-//     }
-
-//     headerRejectCount.innerText = currentValue + 1;
-    
-// })
-
-
-
-
-
-///////////////// end by mine 
-
-
-
-
-
-//--------------------------------------------------------------------------------------------
-
-// inter view button 
-// inter view click er por green hoiya jaibo  not applied ta hoibo interview lekha uthbo 
-// heaader ere inter view count 1 hoibo 
-
-
-
-
-
-
-// reject button
-// inter view click er por green hoiya jaibo  not applied ta hoibo reject lekha uthbo
-//  // heaader ere reject  count 1 hoibo 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//--------------------------------------------------------------------------------------------
-
-// inter view button 
-// inter view click er por green hoiya jaibo  not applied ta hoibo interview lekha uthbo 
-// heaader ere inter view count 1 hoibo 
-
-
-
-
-
-
-// reject button
-// inter view click er por green hoiya jaibo  not applied ta hoibo reject lekha uthbo
-//  // heaader ere reject  count 1 hoibo 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//--------------------------------------------------------------------------------------------
-
-// inter view button 
-// inter view click er por green hoiya jaibo  not applied ta hoibo interview lekha uthbo 
-// heaader ere inter view count 1 hoibo 
-
-
-
-
-
-
-// reject button
-// inter view click er por green hoiya jaibo  not applied ta hoibo reject lekha uthbo
-//  // heaader ere reject  count 1 hoibo 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//--------------------------------------------------------------------------------------------
-
-// inter view button 
-// inter view click er por green hoiya jaibo  not applied ta hoibo interview lekha uthbo 
-// heaader ere inter view count 1 hoibo 
-
-
-
-
-
-
-// reject button
-// inter view click er por green hoiya jaibo  not applied ta hoibo reject lekha uthbo
-//  // heaader ere reject  count 1 hoibo 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//--------------------------------------------------------------------------------------------
-
-// inter view button 
-// inter view click er por green hoiya jaibo  not applied ta hoibo interview lekha uthbo 
-// heaader ere inter view count 1 hoibo 
-
-
-
-
-
-
-// reject button
-// inter view click er por green hoiya jaibo  not applied ta hoibo reject lekha uthbo
-//  // heaader ere reject  count 1 hoibo 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//--------------------------------------------------------------------------------------------
-
-// inter view button 
-// inter view click er por green hoiya jaibo  not applied ta hoibo interview lekha uthbo 
-// heaader ere inter view count 1 hoibo 
-
-
-
-
-
-
-// reject button
-// inter view click er por green hoiya jaibo  not applied ta hoibo reject lekha uthbo
-//  // heaader ere reject  count 1 hoibo 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//--------------------------------------------------------------------------------------------
-
-// inter view button 
-// inter view click er por green hoiya jaibo  not applied ta hoibo interview lekha uthbo 
-// heaader ere inter view count 1 hoibo 
-
-
-
-
-
-
-// reject button
-// inter view click er por green hoiya jaibo  not applied ta hoibo reject lekha uthbo
-//  // heaader ere reject  count 1 hoibo 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//--------------------------------------------------------------------------------------------
-
