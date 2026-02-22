@@ -4,6 +4,7 @@ let RejectedList =[];
 
 
 let total = document.getElementById('header-total-count');
+let bodyTotal = document.getElementById('body-total-count')
 let InterviewCountIs2 =  document.getElementById('header-interview-count');
 let RejectViewCountIs2 =  document.getElementById('header-reject-count');
 
@@ -21,6 +22,7 @@ const filterSection = document.getElementById('filted-section');
 
 function CalculateCount() {
     total.innerText = allCardSection.children.length ;
+    bodyTotal.innerText = allCardSection.children.length ;
     InterviewCountIs2.innerText = InterviewList.length;
     RejectViewCountIs2.innerText = RejectedList.length;
 }
@@ -35,8 +37,9 @@ function toggleStyle(id){
     
 
     if(id== 'interview-tab'){
-        allCardSection.classList.add('hidden');
-        filterSection.classList.remove('hidden');
+    allCardSection.classList.add('hidden');
+    filterSection.classList.remove('hidden');
+    renderInterview();
     }
     else if(id == 'tab-all'){
         allCardSection.classList.remove('hidden');
@@ -79,7 +82,7 @@ mainContainer.addEventListener('click', function(event){
   parentN.querySelector('.status').style.backgroundColor = 'lightGreen';
   parentN.querySelector('.status').style.width = '85px';
   parentN.querySelector('.status').style.padding = '5px';
-const titleExist =  InterviewList.find(item=> item.cardTitle == cardInfo.cardTitle) ;
+const titleExist =  InterviewList.find(item=> item.cardTitle === cardInfo.cardTitle) ;
 
   
 //   parentN.querySelector('.status').style.padding = '5px';
@@ -93,9 +96,9 @@ const titleExist =  InterviewList.find(item=> item.cardTitle == cardInfo.cardTit
 
 RejectedList = RejectedList.filter(item => item.cardTitle !== cardTitle);
   CalculateCount()
-    renderInterview()
-
-
+if(rejectTab.checked){
+    renderRejected();
+}
 
  }
  else if(event.target.classList.contains('rejected-btn')){
@@ -125,7 +128,7 @@ RejectedList = RejectedList.filter(item => item.cardTitle !== cardTitle);
   parentN.querySelector('.status').style.backgroundColor = '#FFCCCB';
   parentN.querySelector('.status').style.width = '60px';
   parentN.querySelector('.status').style.padding = '5px';
-const titleExist =  RejectedList.find(item=> item.cardTitle == cardInfo.cardTitle) ;
+const titleExist =  RejectedList.find(item=> item.cardTitle === cardInfo.cardTitle) ;
 
 
 
@@ -141,22 +144,35 @@ else if (event.target.closest('.delete-btn')) {
   const card = event.target.closest('.card');
   const cardTitle = card.querySelector('h3').innerText;
 
-  // DOM থেকে remove
   card.remove();
 
   InterviewList = InterviewList.filter(item => item.cardTitle !== cardTitle);
-
-
+  RejectedList = RejectedList.filter(item => item.cardTitle !== cardTitle);
 
   CalculateCount();
-
-
 }
 })
+function showEmptyState(){
+    return `
+        <div class="text-center p-30 h-[400px] bg-[#2c2222] rounded-lg">
+            <img src="img/jobs.png" class="mx-auto w-24 mb-4">
+            <h3 class="text-xl font-bold">No jobs available</h3>
+            <p class="text-gray-500">Check back soon for new job opportunities</p>
+        </div>
+    `;
+}
 
 
 function renderInterview(){
    filterSection.innerHTML = ''
+
+
+    if(InterviewList.length === 0){
+        filterSection.innerHTML = showEmptyState();
+        return;
+    }
+
+
 
 
    for(let interview of InterviewList){
@@ -195,6 +211,12 @@ function renderRejected(){
    filterSection.innerHTML = ''
 
 
+ if(RejectedList.length === 0){
+        filterSection.innerHTML = showEmptyState();
+        return;
+    }
+
+
    for(let rejected of RejectedList){
 
     // console.log(rejected);
@@ -203,7 +225,9 @@ function renderRejected(){
     div.className = 'card shadow-2xl p-5 mt-10 border-2  border-[white]'
     div.innerHTML =                       `<div class="card-title flex justify-between">
                                         <h3 class="font-bold text-[16px]">${rejected.cardTitle}</h3>
-                                        <button id="delete-box-mobile"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="delete-btn">
+                                        <i class="fa-solid fa-trash"></i>
+                                        </button>
     
                                         </div>
                                         <p class="light opacity-50">${rejected.light}</p>
