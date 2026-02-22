@@ -44,7 +44,7 @@ function toggleStyle(id){
     }else if(id == 'rejected-tab'){
   allCardSection.classList.add('hidden');
   filterSection.classList.remove('hidden');
-    }
+     }
 }
 
 
@@ -89,8 +89,15 @@ const titleExist =  InterviewList.find(item=> item.cardTitle == cardInfo.cardTit
   if(!titleExist){
     InterviewList.push(cardInfo);
   }
+RejectedList = RejectedList.filter(item => item.cardTitle != cardInfo.cardTitle);
+ 
+
+
   CalculateCount()
     renderInterview()
+
+
+
  }
  else if(event.target.classList.contains('rejected-btn')){
     const parentN = event.target.parentNode.parentNode;
@@ -126,6 +133,7 @@ const titleExist =  RejectedList.find(item=> item.cardTitle == cardInfo.cardTitl
   if(!titleExist){
     RejectedList.push(cardInfo);
   }
+    InterviewList = InterviewList.filter(item => item.cardTitle !== cardTitle);
   CalculateCount()
     renderRejected()
  }
